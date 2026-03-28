@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  mnemo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mnemo
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mnemo.yaml:/etc/mnemo/mnemo.yaml:ro
+    environment:
+      - MNEMO_CONFIG=/etc/mnemo/mnemo.yaml
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk-REPLACE_ME}
+      - RUST_LOG=${RUST_LOG:-info}
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - mnemo-net
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: mnemo-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - mnemo-net
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+
+networks:
+  mnemo-net:
+    driver: bridge

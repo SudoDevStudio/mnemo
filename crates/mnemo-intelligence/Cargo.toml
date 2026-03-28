@@ -1,0 +1,23 @@
+[package]
+name = "mnemo-intelligence"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = []
+onnx = ["ort", "tokenizers"]
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+chrono.workspace = true
+rand.workspace = true
+parking_lot.workspace = true
+
+# Optional: real ONNX-based embedding inference
+ort = { workspace = true, optional = true }
+tokenizers = { workspace = true, optional = true }

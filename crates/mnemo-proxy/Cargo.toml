@@ -1,0 +1,41 @@
+[package]
+name = "mnemo-proxy"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[features]
+default = []
+onnx = ["mnemo-intelligence/onnx"]
+
+[lib]
+name = "mnemo_proxy"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mnemo"
+path = "src/main.rs"
+
+[dependencies]
+mnemo-cache = { path = "../mnemo-cache" }
+mnemo-intelligence = { path = "../mnemo-intelligence" }
+mnemo-mcp = { path = "../mnemo-mcp" }
+mnemo-acp = { path = "../mnemo-acp" }
+
+tokio.workspace = true
+axum.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+serde_yaml.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+reqwest.workspace = true
+tokio-stream.workspace = true
+futures-core.workspace = true
+bytes.workspace = true
+sha2.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+hex.workspace = true
+shellexpand.workspace = true

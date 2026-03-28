@@ -1,0 +1,40 @@
+upstream:
+  provider: openai
+  base_url: https://api.openai.com
+  api_key: ${OPENAI_API_KEY}
+
+bind: "0.0.0.0:8080"
+
+logging:
+  level: info                  # error | warn | info | debug | trace (overridden by MNEMO_LOG or RUST_LOG)
+  format: pretty               # pretty | json
+  log_requests: false          # log individual request details at debug level
+  log_cache_events: true       # log cache hit/miss events at info level
+
+cache:
+  l1_max_entries: 10000
+  l2_max_entries: 100000
+  # l3_redis_url: redis://localhost:6379
+  l3_min_cost_threshold: 0.01
+
+intelligence:
+  embedding_model: bge-small-en
+  lora_training_enabled: false
+  staleness_detection_enabled: false
+  training_batch_size: 32
+  training_interval_seconds: 300
+
+# mcp:
+#   server_url: http://localhost:3000
+#   tools:
+#     get_user_profile:
+#       cacheable: true
+#     get_weather:
+#       cacheable: false
+
+# acp:
+#   registry_url: http://localhost:4000
+#   agents:
+#     summariser-agent:
+#       cacheable: true
+#       cache_key_fields: [task, document_id]

@@ -1,0 +1,31 @@
+# Build artifacts
+target/
+debug/
+**/*.rs.bk
+*.pdb
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.tar
+
+# Redis data
+data/
+
+# Mnemo runtime
+*.log

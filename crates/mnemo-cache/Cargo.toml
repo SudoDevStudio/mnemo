@@ -1,0 +1,20 @@
+[package]
+name = "mnemo-cache"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+dashmap.workspace = true
+moka.workspace = true
+sha2.workspace = true
+chrono.workspace = true
+hnsw_rs.workspace = true
+parking_lot.workspace = true
+deadpool-redis.workspace = true
+redis.workspace = true
